@@ -10,7 +10,7 @@ const Cart = () => {
   const navigate = useNavigate();
 
   let subtotal = getTotalCartAmount();
-  const deliveryFee = 2;
+  const deliveryFee = subtotal === 0 ? 0 : 2;  
   const total = subtotal + deliveryFee;
 
   return (
@@ -29,19 +29,17 @@ const Cart = () => {
         {food_list.map((item) => {
           if (cartItems[item._id] && cartItems[item._id] > 0) {
             return (
-              <>
-                <div key={item._id} className="cart-items-title cart-items-item">
-                  <img src={item.image} alt={item.name} />
-                  <p>{item.name}</p>
-                  <p>${item.price}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>${item.price * cartItems[item._id]}</p>
-                  <p className="cross" onClick={() => removeFromCart(item._id)}>
-                    <RxCross1 />
-                  </p>
-                </div>
+              <div key={item._id} className="cart-items-title cart-items-item">
+                <img src={item.image} alt={item.name} />
+                <p>{item.name}</p>
+                <p>${item.price}</p>
+                <p>{cartItems[item._id]}</p>
+                <p>${item.price * cartItems[item._id]}</p>
+                <p className="cross" onClick={() => removeFromCart(item._id)}>
+                  <RxCross1 />
+                </p>
                 <hr />
-              </>
+              </div>
             );
           }
           return null;
@@ -66,7 +64,7 @@ const Cart = () => {
               <b>${total}</b>
             </div>
           </div>
-          <button onClick={()=> navigate('/order')}>PROCEED TO CHECKOUT</button>
+          <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
         <div className="cart-promocode">
           <div>
