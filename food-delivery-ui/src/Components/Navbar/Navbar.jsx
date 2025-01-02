@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { GrBasket } from "react-icons/gr";
 import {Link} from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({setShowLogin}) => {
     const [menu, setMenu] = useState("home");
 
     return (
@@ -26,7 +26,7 @@ const Navbar = () => {
                     <GrBasket />
                     <div className={styles.dot}></div>
                 </div>
-                <button>Sign in</button>
+                <button onClick={()=>setShowLogin(true)}>Sign in</button>
             </div>
         </div>
     );
