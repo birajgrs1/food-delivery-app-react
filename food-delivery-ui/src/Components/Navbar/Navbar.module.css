@@ -1,116 +1,274 @@
+/* Navbar.module.css */
 .navbar {
-    padding: 20px 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
-.navbar .logo {
+.navbar.scrolled {
+    padding: 10px 5%;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.navContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo {
     width: 120px;
+    transition: all 0.3s ease;
+}
+
+.brandName {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff6b6b;
+    margin-left: 8px;
+    display: none;
 }
 
 .navbarMenu {
     display: flex;
     list-style: none;
-    gap: 20px;
-    color: #49557e;
-    font-size: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
 }
 
-.navbarMenu li {
-    cursor: pointer;
+.navLink {
+    text-decoration: none;
+    color: #49557e;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 0;
+    position: relative;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+
+.navLink:hover {
+    color: #ff6b6b;
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ff6b6b;
+    transition: width 0.3s ease;
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+    width: 100%;
+}
+
+.navLink.active {
+    color: #ff6b6b;
 }
 
 .rightSide {
     display: flex;
     align-items: center;
     gap: 20px;
-    flex-wrap: wrap;
 }
 
-.navbar button {
-    background: transparent;
-    font-size: 14px;
+.searchIcon, .cartIcon {
+    font-size: 1.2rem;
     color: #49557e;
-    border: 1px solid rgb(240, 85, 131);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.searchIcon:hover, .cartIcon:hover {
+    color: #ff6b6b;
+    transform: translateY(-2px);
+}
+
+.cartLink {
+    position: relative;
+    display: flex;
+    color: inherit;
+}
+
+.cartBadge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff6b6b;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.signInBtn {
+    background: transparent;
+    font-size: 0.9rem;
+    color: #49557e;
+    border: 1px solid #ff6b6b;
     padding: 8px 20px;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.navbar button:hover {
-    background: rgb(240, 85, 131);
+.signInBtn:hover {
+    background: #ff6b6b;
     color: white;
-    border-color: #8645a5;
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
 }
 
-.navbar .active {
-    padding-bottom: 2px;
-    border-bottom: 2px solid #49557e;
+.userIcon {
+    font-size: 0.9rem;
 }
 
-.navbar .search {
-    position: relative;
+.mobileMenuToggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #49557e;
+    cursor: pointer;
 }
 
-.navbar .search .dot {
-    position: absolute;
-    min-width: 10px;
-    min-height: 10px;
-    background-color: rgb(240, 85, 131);
-    border-radius: 5px;
-    top: -8px;
-    right: -8px;
+.mobileMenu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.mobileMenu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobileNavLink {
+    text-decoration: none;
+    color: #49557e;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f1f1;
+    text-transform: capitalize;
+    transition: all 0.2s ease;
+}
+
+.mobileNavLink:hover,
+.mobileNavLink.active {
+    color: #ff6b6b;
+    padding-left: 10px;
+}
+
+.mobileSignInBtn {
+    margin-top: 15px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mobileSignInBtn:hover {
+    background: #e55a5a;
+    transform: translateY(-2px);
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .navbarMenu {
+        gap: 20px;
+    }
+    
+    .navLink {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 12px 5%;
     }
-
+    
     .navbarMenu {
-        justify-content: flex-start;
-        font-size: 18px;
-        gap: 10px;
+        display: none;
     }
-
-    .rightSide {
-        justify-content: space-between;
-        gap: 15px;
+    
+    .brandName {
+        display: block;
     }
-
-    .navbar .logo {
-        width: 100px;
+    
+    .mobileMenuToggle {
+        display: block;
     }
-
-    .navbar button {
-        font-size: 12px;
-        padding: 6px 15px;
+    
+    .signInBtn span {
+        display: none;
+    }
+    
+    .signInBtn {
+        padding: 8px;
     }
 }
 
 @media (max-width: 480px) {
-    .navbarMenu {
-        font-size: 16px;
-        gap: 8px;
+    .logo {
+        width: 100px;
     }
-
-    .rightSide {
-        gap: 10px;
+    
+    .brandName {
+        font-size: 1.2rem;
     }
-
-    .navbar button {
-        font-size: 10px;
-        padding: 5px 10px;
-    }
-
-    .navbar .logo {
-        width: 80px;
+    
+    .searchIcon {
+        display: none;
     }
 }

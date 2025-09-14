@@ -1,137 +1,273 @@
+/* Header.module.css */
 .header {
-    height: 34vw;
+    height: 40vw;
+    min-height: 400px;
+    max-height: 700px;
     margin: 30px auto;
-    background: url('/header_img.png') no-repeat center center;
-    background-size: cover; 
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('/header_img.png') no-repeat center center;
+    background-size: cover;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
     border-radius: 6px;
+    z-index: 0; /* Ensure header stays behind login popup */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+                rgba(144, 73, 236, 0.2) 0%, 
+                rgba(240, 85, 131, 0.2) 100%);
+    z-index: 1;
 }
 
 .contents {
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.5vw;
+    gap: 1.5rem;
     max-width: 50%;
-    bottom: 10%;
-    left: 6vw;
-    animation: fadeIn 2s ease-in-out;
+    margin-left: 6vw;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+}
+
+.contents.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .contents h2 {
-    font-weight: 500;
+    font-weight: 700;
     color: white;
-    font-size: max(3.5vw, 16px);
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.5rem;
 }
 
 .contents p {
-    color: white;
-    font-size: 1vw;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    line-height: 1.6;
+    max-width: 90%;
+    margin-bottom: 1rem;
 }
 
-.contents button {
+.contents p strong {
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+}
+
+.contents p strong::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #ff6b6b, #9049ec);
+    border-radius: 2px;
+}
+
+.ctaContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     border: none;
-    padding: 1vw 2.3vw;
-    font-weight: 500;
-    color: rgb(144, 73, 236);
+    padding: 1rem 2rem;
+    font-weight: 600;
+    color: #9049ec;
     background-color: white;
-    font-size: max(1vw, 13px);
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
 }
 
-.contents button:hover {
-    background-color: rgb(144, 73, 236);
+.ctaButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: all 0.6s ease;
+}
+
+.ctaButton:hover {
+    background-color: #9049ec;
     color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(144, 73, 236, 0.4);
+}
+
+.ctaButton:hover::before {
+    left: 100%;
+}
+
+.ctaButton:active {
+    transform: translateY(-1px);
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stars {
+    display: flex;
+    gap: 0.1rem;
+}
+
+.star {
+    color: #ffc107;
+    font-size: 1rem;
+}
+
+.ratingText {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.scrollIndicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.scrollAnimation {
+    width: 2px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    position: relative;
+    border-radius: 1px;
+}
+
+.scrollAnimation::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: white;
+    border-radius: 1px;
+    animation: scroll 2s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        top: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 20px;
+        opacity: 0;
+    }
 }
 
 @keyframes fadeIn {
-    0% {
+    from {
         opacity: 0;
+        transform: translateY(20px);
     }
-    100% {
+    to {
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
+/* Media Queries */
 @media (max-width: 1024px) {
     .header {
-        height: 40vw;
-        margin: 20px auto;
+        min-height: 350px;
     }
-
+    
     .contents {
-        max-width: 70%;
-        left: 4vw;
-        bottom: 12%;
-        gap: 1.2vw;
-    }
-
-    .contents h2 {
-        font-size: max(4vw, 14px);
-    }
-
-    .contents p {
-        font-size: 1.2vw;
-    }
-
-    .contents button {
-        padding: 1.2vw 2vw;
-        font-size: max(1.2vw, 12px);
+        max-width: 60%;
+        margin-left: 5vw;
     }
 }
 
 @media (max-width: 768px) {
     .header {
+        min-height: 300px;
         height: 50vw;
+        justify-content: center;
+        text-align: center;
+        background-position: 60% center;
     }
-
+    
     .contents {
-        max-width: 80%;
-        left: 3vw;
-        bottom: 14%;
-        gap: 1vw;
+        max-width: 85%;
+        margin: 0 auto;
+        align-items: center;
     }
-
-    .contents h2 {
-        font-size: max(5vw, 12px);
-    }
-
+    
     .contents p {
-        font-size: 1.5vw;
+        max-width: 100%;
     }
-
-    .contents button {
-        padding: 1.5vw 1.8vw;
-        font-size: max(1.5vw, 11px);
+    
+    .ctaContainer {
+        align-items: center;
     }
 }
 
 @media (max-width: 480px) {
     .header {
+        min-height: 250px;
         height: 60vw;
         margin: 15px auto;
     }
-
+    
     .contents {
         max-width: 90%;
-        left: 2vw;
-        bottom: 16%;
-        gap: 0.8vw;
+        gap: 1rem;
     }
-
+    
     .contents h2 {
-        font-size: max(6vw, 10px);
+        font-size: 1.8rem;
     }
-
+    
     .contents p {
-        font-size: 2vw;
+        font-size: 0.9rem;
     }
-
-    .contents button {
-        padding: 1.8vw 1.5vw;
-        font-size: max(2vw, 10px);
+    
+    .ctaButton {
+        padding: 0.8rem 1.8rem;
+    }
+    
+    .rating {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .scrollIndicator {
+        display: none;
     }
 }
