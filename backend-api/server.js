@@ -3,12 +3,18 @@ import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import dotenv from "dotenv";
 import cors from "cors";
+import { connectDB } from "./src/config/connectDB.js";
+
 
 const app = express();
 dotenv.config();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
+
+// Connect to MongoDB
+connectDB();
 
 const PORT = process.env.PORT || 5000;
 
@@ -46,3 +52,5 @@ app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
   console.log(`Swagger UI available at http://localhost:${PORT}/api-docs`);
 });
+
+
