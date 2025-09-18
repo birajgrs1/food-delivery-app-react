@@ -28,10 +28,12 @@
 }
 
 .sidebar-option:hover {
-  background-color: #e6f0ff;
-  color: #1a73e8;
+  background-color: #f79dd9;
+  color: #570342;
 }
-
+.sidebar-option.active {
+  border: 1 px solid #a05c03;
+}
 .icon {
   width: 24px;
   height: 24px;

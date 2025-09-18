@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 import {
   PlusIcon,
@@ -9,18 +10,18 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-options">
-        <div className="sidebar-option">
+        <NavLink to={"/add"} className="sidebar-option">
           <PlusIcon className="icon" />
           <span className="label">Add Item</span>
-        </div>
-        <div className="sidebar-option">
+        </NavLink>
+        <NavLink to={"/list"} className="sidebar-option">
           <ListBulletIcon className="icon" />
           <span className="label">List Items</span>
-        </div>
-        <div className="sidebar-option">
+        </NavLink>
+        <NavLink to="/orders" className="sidebar-option">
           <ClipboardDocumentListIcon className="icon" />
           <span className="label">Orders</span>
-        </div>
+        </NavLink>
       </div>
     </div>
   );
