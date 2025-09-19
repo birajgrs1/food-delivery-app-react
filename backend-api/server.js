@@ -4,7 +4,12 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { connectDB } from "./src/config/connectDB.js";
 import foodRoute from "./src/routes/foodRoute.js";
-import swaggerFile from "./swagger-output.json" assert { type: "json" };
+import fs from "fs";
+import path from "path";
+
+const swaggerFile = JSON.parse(
+  fs.readFileSync(path.resolve("swagger-output.json"), "utf-8")
+);
 
 const app = express();
 dotenv.config();
@@ -36,5 +41,3 @@ app.listen(PORT, () => {
   console.log(` Server running at http://localhost:${PORT}`);
   console.log(` Swagger UI available at http://localhost:${PORT}/api-docs`);
 });
-
-
