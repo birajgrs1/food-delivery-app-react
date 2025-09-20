@@ -1,0 +1,254 @@
+.list {
+  width: 90%;
+  margin: 40px auto;
+  color: #6d6d6d;
+  font-size: 17px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.list-header h2 {
+  color: #333;
+  margin: 0;
+  font-size: 24px;
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #555;
+  font-size: 14px;
+}
+
+.refresh-btn:hover {
+  background-color: #e9ecef;
+  border-color: #ccc;
+}
+
+.refresh-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.list-table-format {
+  display: grid;
+  grid-template-columns: 100px 1fr 120px 100px 80px;
+  gap: 15px;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.list-table-format:hover {
+  background-color: #f9f9f9;
+}
+
+.list-table-format.title {
+  font-weight: bold;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 12px 10px;
+  color: #495057;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.image-cell {
+  display: flex;
+  justify-content: center;
+}
+
+.list-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.item-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.item-category {
+  background-color: #f0f5ff;
+  color: #3d70ff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.item-price {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  color: #dc3545;
+}
+
+.delete-btn:hover {
+  background-color: #fff5f5;
+  color: #c82333;
+  transform: scale(1.1);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #6c757d;
+}
+
+.no-items {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+
+.no-items-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+  color: #dee2e6;
+}
+
+.no-items p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .list-table-format {
+    grid-template-columns: 80px 1fr 100px 80px 70px;
+    gap: 10px;
+  }
+  
+  .list-image {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list {
+    width: 95%;
+    padding: 15px;
+    margin: 20px auto;
+  }
+  
+  .list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .list-table-format.title {
+    display: none;
+  }
+  
+  .list-table-format {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  
+  .image-cell {
+    align-self: center;
+    margin-bottom: 10px;
+  }
+  
+  .list-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .item-category {
+    align-self: flex-start;
+  }
+  
+  .action-buttons {
+    align-self: stretch;
+    justify-content: flex-end;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .list {
+    padding: 10px;
+  }
+  
+  .list-header h2 {
+    font-size: 20px;
+  }
+  
+  .list-table-format {
+    padding: 15px;
+  }
+  
+  .list-image {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .item-name {
+    font-size: 16px;
+  }
+  
+  .item-category, .item-price {
+    font-size: 14px;
+  }
+}
