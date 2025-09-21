@@ -3,6 +3,14 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import validator from "validator";
 
+/**
+{
+  "name": "John Doe",
+  "email": "johndoe@gmail.com",
+  "password": "Password#123"
+  }
+ */
+
 // ========================== LOGIN ==========================
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
