@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { connectDB } from "./src/config/connectDB.js";
 import foodRoute from "./src/routes/foodRoute.js";
+import userRoute from "./src/routes/userRoute.js";
 import fs from "fs";
 import path from "path";
 
@@ -36,6 +37,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/food", foodRoute);
+app.use("/api/user", userRoute);
 
 app.listen(PORT, () => {
   console.log(` Server running at http://localhost:${PORT}`);
