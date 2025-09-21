@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { food_list } from "../../assets/assets";
+// import { food_list } from "../../assets/assets";
 import axios from "axios";
 
 export const StoreContext = createContext(null);
@@ -9,8 +9,10 @@ const StoreContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [user, setUser] = useState(null);
+  const [food_list, setFoodList] = useState([]);
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+  const backendUrl =
+    import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
   useEffect(() => {
     if (token) {
@@ -78,6 +80,25 @@ const StoreContextProvider = ({ children }) => {
     return totalAmount;
   };
 
+  const fetchFoodList = async () => {
+    try {
+      const res = await axios.get(`${backendUrl}/api/food/list`);
+      setFoodList(res.data);
+    } catch (err) {
+      console.error("Fetch food list error:", err.message);
+    }
+  };
+
+  useEffect(() => {
+    async function loadData() {
+      await fetchFoodList();
+      if (localStorage.getItem("token")) {
+        setToken(localStorage.getItem("token"));
+      }
+    }
+    loadData();
+  }, []);
+
   const contextValue = {
     food_list,
     cartItems,
@@ -91,7 +112,11 @@ const StoreContextProvider = ({ children }) => {
     logout,
   };
 
-  return <StoreContext.Provider value={contextValue}>{children}</StoreContext.Provider>;
+  return (
+    <StoreContext.Provider value={contextValue}>
+      {children}
+    </StoreContext.Provider>
+  );
 };
 
 StoreContextProvider.propTypes = {
