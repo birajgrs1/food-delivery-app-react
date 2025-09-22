@@ -127,9 +127,6 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "401": {
             "description": "Unauthorized"
           },
@@ -178,6 +175,49 @@
         }
       }
     },
+    "/api/user/logout": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/user/refresh": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "refreshToken": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
     "/api/user/me": {
       "get": {
         "description": "",
@@ -200,6 +240,78 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/cart/add": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "itemId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/cart/get": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/cart/remove": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }

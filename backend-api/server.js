@@ -5,6 +5,7 @@ import cors from "cors";
 import { connectDB } from "./src/config/connectDB.js";
 import foodRoute from "./src/routes/foodRoute.js";
 import userRoute from "./src/routes/userRoute.js";
+import cartRoute from "./src/routes/cartRoute.js";
 import fs from "fs";
 import path from "path";
 
@@ -38,6 +39,7 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/api/food", foodRoute);
 app.use("/api/user", userRoute);
+app.use("/api/cart", cartRoute);
 
 app.listen(PORT, () => {
   console.log(` Server running at http://localhost:${PORT}`);
