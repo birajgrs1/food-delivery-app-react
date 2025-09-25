@@ -3,11 +3,12 @@ import styles from "./Navbar.module.css";
 import { assets } from "../../assets/assets";
 import { FaSearch, FaUser, FaTimes, FaBars } from "react-icons/fa";
 import { GrBasket } from "react-icons/gr";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../Store/Contexts/StoreContext";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -116,7 +117,7 @@ const Navbar = ({ setShowLogin }) => {
                     <p>Hello, {user?.name}</p>
                   </div>
                   <ul>
-                    <li>
+                    <li onClick={()=>navigate('/myorders')}>
                       <img src={assets.bag_icon} alt="" /> <p>Orders</p>
                     </li>
                     <hr />
